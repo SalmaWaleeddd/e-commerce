@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
 import ProductDetailPage from '@/pages/ProductDetailsPage';
 import { NotFound } from '@/pages/NotFoundPage';
+import CartPage from '@/pages/CartPage';
 
 
 export const AppRoutes: React.FC = () => {
@@ -13,6 +14,7 @@ export const AppRoutes: React.FC = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/products" element={<HomePage />} />
       <Route path="/products/:id" element={<ProductDetailPage />} />
+      <Route path="/cart" element={<CartPage />} />
       
 
       

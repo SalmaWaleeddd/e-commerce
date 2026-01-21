@@ -22,10 +22,6 @@ export interface ProductFilters {
   sortBy?: 'price_asc' | 'price_desc' | 'title';
 }
 
-export interface CartItem extends Product {
-  quantity: number;
-}
-
 export interface CreateProduct {
   title: string;
   price: number;
