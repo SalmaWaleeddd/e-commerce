@@ -1,30 +1,33 @@
 // pages/HomePage.tsx
 import React, { useMemo } from 'react';
 import { ProductGrid } from '@/components/product';
-import { ProductSort, sortProducts } from '@/components/product';
+import { ProductSort } from '@/components/product/ProductSort';
 import { ProductPagination } from '@/components/product';
-import { useProducts } from '@/hooks/useProducts';
+import { useProductContext } from '@/contexts/ProductContext';
+import { useProductOperations } from '@/hooks/useProductOperations';
 import { usePagination } from '@/hooks/usePagination';
-import  MainLayout  from '@/components/layout/MainLayout';
+import MainLayout from '@/components/layout/MainLayout';
 import { ChevronDown } from 'lucide-react';
-import type { SortOption } from '@/components/product';
-
+import type { SortOption } from '@/constants/productSort';
 const HomePage: React.FC = () => {
   // Items per page options
   const itemsPerPageOptions = [12, 24, 36, 48];
   
-  // Fetch products
-  const { products, categories, loading, error, refetchProducts } = useProducts();
+  // Fetch products using context (global state)
+  const { allProducts: products, categories, isLoading: loading, error, refetchAllData } = useProductContext();
+  
+  // Use product operations for sorting/filtering logic
+  const { filterAndSortProducts } = useProductOperations();
   
   // State for sorting, filtering, and items per page
   const [selectedCategory, setSelectedCategory] = React.useState('all');
   const [sortOption, setSortOption] = React.useState<SortOption>('default');
   const [itemsPerPage, setItemsPerPage] = React.useState(itemsPerPageOptions[0]);
   
-  // Apply sorting and filtering
+  // Apply sorting and filtering using the hook
   const filteredProducts = useMemo(() => {
-    return sortProducts(products, sortOption, selectedCategory);
-  }, [products, sortOption, selectedCategory]);
+    return filterAndSortProducts(products, selectedCategory, sortOption);
+  }, [products, selectedCategory, sortOption, filterAndSortProducts]);
 
   // Use pagination hook
   const pagination = usePagination({
@@ -126,7 +129,7 @@ const HomePage: React.FC = () => {
               error
                 ? {
                     message: error,
-                    onRetry: refetchProducts,
+                    onRetry: refetchAllData,
                     type: 'error' as const,
                   }
                 : undefined
