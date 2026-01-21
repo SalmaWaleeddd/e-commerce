@@ -1,7 +1,7 @@
 // pages/ProductDetailPage.tsx
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, ShoppingCart, Star, Package, Tag, Truck, Shield } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ShoppingCart, Star, Package, Truck } from 'lucide-react';
 import  MainLayout  from '@/components/layout/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -65,7 +65,6 @@ const ProductDetailPage: React.FC = () => {
     setAddingToCart(true);
     try {
       await addToCart(product);
-      // You could show a success toast here
     } catch (err) {
       console.error('Failed to add to cart:', err);
     } finally {
@@ -234,7 +233,7 @@ const ProductDetailPage: React.FC = () => {
                     size="lg"
                     onClick={() => {
                       handleAddToCart();
-                      navigate('/cart'); // Assuming you have a cart page
+                      navigate('/cart');
                     }}
                   >
                     Buy Now
@@ -264,7 +263,7 @@ const ProductDetailPage: React.FC = () => {
               <Button
                 variant="outline"
                 className="mt-4"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/products')}
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Browse All Products
