@@ -1,73 +1,88 @@
-# React + TypeScript + Vite
+# E-Commerce Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive e-commerce application built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+##  Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Features
+- **Product Browsing**: View products with images, prices, and categories
+- **Product Details**: Detailed view with descriptions and add-to-cart functionality
+- **Shopping Cart**: Add, remove, and update product quantities
+- **User Authentication**: Sign up, login, and protected routes
+- **Product Creation**: Add new products (authenticated users only)
 
-## React Compiler
+### Cart Features
+- Real-time cart calculations
+- Free shipping on orders over $50
+- 8% tax rate applied
+- Local storage persistence
+- Protected cart page
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Technical Features
+- Responsive design (mobile & desktop)
+- Form validation and error handling
+- Loading states and error boundaries
+- Clean component architecture
+- Type-safe with TypeScript
 
-## Expanding the ESLint configuration
+##  Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 18** with TypeScript
+- **React Router** for navigation
+- **Tailwind CSS** for styling
+- **Context API** for state management
+- **LocalStorage** for data persistence
+- **React Hook Form** for form handling
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+##  Project Structure
+```bash
+src/
+├── components/     # Reusable UI components
+├── contexts/      # React contexts (Auth, Cart)
+├── pages/         # Page components
+├── services/      # API service layers
+├── utils/         # Utility functions
+├── types/         # TypeScript definitions
+└── routes/        # Route configurations
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+##  Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+- Node.js 16+ and npm
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
+## Environment Setup
+Create a .env file:
+```bash
+#env
+VITE_API_URL=https://fakestoreapi.com
+```
+## Available Scripts
+```bash
+# Start development server
+npm run dev  
+
+# Run ESLint
+npm run lint 
+```
+
+## Authentication
+The app uses mock authentication for demonstration:
+
+- Any username/password combination works
+
+- Session persists across page reloads
+
+- Protected routes: /cart and /create-product
+
