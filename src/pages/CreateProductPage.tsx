@@ -7,7 +7,7 @@ import { CreateProductForm } from "@/components/product";
 import { ErrorMessage, EmptyState, PageSpinner } from "@/components/common";
 import { toast } from "sonner";
 import type { CreateProduct } from "@/types/product";
-import { formDataToCreateProduct } from "@/utils/validators";
+import { formDataToCreateProduct } from "@/utils/createProduct.validators";
 import MainLayout from "@/components/layout/MainLayout";
 import { ArrowLeft } from "lucide-react";
 

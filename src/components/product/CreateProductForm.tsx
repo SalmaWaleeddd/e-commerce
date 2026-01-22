@@ -9,7 +9,7 @@ import {
   createProductSchema,
   type CreateProductFormData,
   isValidImageUrl,
-} from "@/utils/validators";
+} from "@/utils/createProduct.validators";
 
 interface CreateProductFormProps {
   categories: string[];
