@@ -15,13 +15,6 @@ export interface Product {
   rating?: Rating;
 }
 
-export interface ProductFilters {
-  category?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  sortBy?: 'price_asc' | 'price_desc' | 'title';
-}
-
 export interface CreateProduct {
   title: string;
   price: number;

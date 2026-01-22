@@ -5,7 +5,7 @@ export const SPINNER_SIZE_CLASSES = {
   md: 'h-6 w-6',
   lg: 'h-8 w-8',
   xl: 'h-12 w-12',
-} as const; // 'as const' makes it readonly - TypeScript knows exact values
+} as const;
 
 export const SPINNER_VARIANT_CLASSES = {
   primary: 'text-blue-600',
