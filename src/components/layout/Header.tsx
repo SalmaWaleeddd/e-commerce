@@ -1,7 +1,7 @@
 // components/layout/Header.tsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
 import { ShoppingCart, User, LogOut, Package, Plus, Menu, X } from 'lucide-react';
 
@@ -28,7 +28,7 @@ const NavigationLinks: React.FC<{
         Products
       </Link>
       
-      {!user && (
+      {user && (
         <>
           <Link 
             to="/create-product" 
@@ -124,7 +124,7 @@ const UserSection: React.FC<{
         <User className={`${isMobile ? "h-5 w-5 text-gray-600" : "h-5 w-5 text-gray-600 flex-shrink-0"}`} />
         <div className={`${isMobile ? "flex-1 min-w-0" : ""}`}>
           <p className={`font-medium text-gray-700 truncate ${isMobile ? "text-sm" : "text-sm lg:text-base"}`}>
-            {user.name || user.email}
+            {user.username || user.email}
           </p>
         </div>
       </div>
