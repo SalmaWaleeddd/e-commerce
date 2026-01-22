@@ -1,5 +1,5 @@
 // context/AuthContext.tsx
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 import { AuthContextType, SignupFormData, LoginFormData } from '@/types';
 import { AuthService } from '@/services/authService';
 import { AuthStorage } from '@/utils/auth.storage';
@@ -23,6 +23,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     clearError: () => {},
   });
 
+  // Initialize auth state
+  useEffect(() => {
+    const initializeAuth = async () => {
+      try {
+        const user = AuthStorage.getUser();
+        const isAuthenticated = AuthStorage.getAuthStatus();
+        
+        setState(prev => ({
+          ...prev,
+          user,
+          isAuthenticated: isAuthenticated && !!user,
+          isLoading: false,
+        }));
+      } catch (error) {
+        setState(prev => ({
+          ...prev,
+          isLoading: false,
+          error: 'Failed to initialize authentication',
+        }));
+      }
+    };
+
+    initializeAuth();
+  }, []);
 
   const signup = async (formData: SignupFormData) => {
     setState(prev => ({ ...prev, isLoading: true, error: null }));
