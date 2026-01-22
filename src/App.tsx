@@ -4,10 +4,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes';
 import { ProductProvider } from './contexts/ProductContext';
 import { Toaster } from 'sonner';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
     <BrowserRouter>
+    <AuthProvider>
       <ProductProvider> 
         <CartProvider>
           <AppRoutes />
@@ -20,6 +22,7 @@ function App() {
           />
         </CartProvider>
       </ProductProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
