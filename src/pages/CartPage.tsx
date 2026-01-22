@@ -1,11 +1,11 @@
 // pages/CartPage.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag, Trash2 } from "lucide-react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
-import CartItem from "@/components/cart/CartItem";
-import CartSummary from "@/components/cart/CartSummary";
+import {CartItem} from "@/components/cart";
+import {CartSummary} from "@/components/cart";
 import { useCart } from "@/contexts/CartContext";
 //import { useAuth } from '@/contexts/AuthContext'; // You'll need to create this
 import { PageSpinner } from "@/components/common";
@@ -30,6 +30,13 @@ const CartPage: React.FC = () => {
   const tax = totalPrice * 0.08; // 8% tax rate 
   const orderTotal = totalPrice + shipping + tax;
 
+     useEffect(() => {
+      // Scroll to top whenever page loads
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }, [location.pathname]);
   const handleClearCart = () => {
     setIsClearing(true);
     setTimeout(() => {
